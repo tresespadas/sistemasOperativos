@@ -9,7 +9,7 @@ if [ "$#" -ne 3 ]
   else
     for ((i = $#; i >= 1; i--))
       do
-        arg=${!i}
+        arg=${!i} # Sacar lo que vale el índice o "Expansión del párametro"
         echo "$arg"
       done
 fi
