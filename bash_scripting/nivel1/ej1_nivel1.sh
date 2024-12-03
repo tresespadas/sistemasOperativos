@@ -7,5 +7,9 @@ if [ "$#" -ne 3 ]
   then
     echo "No es igual a 3"
   else
-    echo "Es igual a 3"
+    for ((i = $#; i >= 1; i--))
+      do
+        arg=${!i}
+        echo "$arg"
+      done
 fi
