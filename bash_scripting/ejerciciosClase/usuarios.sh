@@ -13,25 +13,24 @@ if [[ $(whoami) == "root" ]]
 				read -p "Nombre del nuevo usuario: " new_user
 				cat /etc/passwd | grep -iw "^$new_user" &> /dev/null
 				if [[ $? -eq 0 ]]
-				then
-					echo "El usuario existe"
-				else
-          read -sp "Elige una contraseña para el nuevo usuario: " new_user_pass
-          echo
-          sudo useradd -m -p $new_user_pass $new_user
+					then
+						echo "El usuario existe"
+					else
+						read -sp "Elige una contraseña para el nuevo usuario: " new_user_pass
+						echo
+						sudo useradd -m -p $new_user_pass $new_user
 				fi
 				;;
 			2)
-				echo "Esta es la opción $option"
-        read -p "Nombre del usuario que se desea borrar: " $user_del
-        echo $user_del
+				read -p "Nombre del usuario que se desea borrar: " user_del
 				cat /etc/passwd | grep -iw "^$user_del" &> /dev/null
 				if [[ $? -eq 0 ]]
-				then
-					echo "El usuario existe"
-          sudo userdel $user_del # ARREGLAR - No funciona
-				else
-					echo "El usuario no existe"
+					then
+						echo "El usuario existe, se procede a borrarlo y a su directorio home"
+						sudo userdel $user_del
+						sudo rm -rf /home/$user_del
+					else
+						echo "El usuario no existe"
 				fi
 				;;
 			3)
