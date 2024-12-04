@@ -6,6 +6,7 @@
 if [ "$#" -ne 3 ]
   then
     echo "No es igual a 3"
+    exit 1
   else
     for ((i = $#; i >= 1; i--))
       do
