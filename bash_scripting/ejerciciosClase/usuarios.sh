@@ -22,7 +22,7 @@ if [[ $(whoami) == "root" ]]
 				else
 					echo "El usuario no existe"
           #useradd
-          read -p -s "Elige una contraseña para el nuevo usuario: " new_user_pass
+          read -p -s "Elige una contraseña para el nuevo usuario: " new_user_pass #ARREGLAR "-s"
           #sudo useradd -m -p ($new_user_pass $new_user
 				fi
 				;;
