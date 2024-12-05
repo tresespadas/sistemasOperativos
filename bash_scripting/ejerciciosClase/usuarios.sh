@@ -19,6 +19,7 @@ if [[ $(whoami) == "root" ]]
 						read -sp "Elige una contraseña para el nuevo usuario: " new_user_pass
 						echo
 						sudo useradd -m -p $new_user_pass $new_user
+            echo "Se ha creado el usuario $new_user con su directorio home personal"
 				fi
 				;;
 			2)
@@ -34,10 +35,34 @@ if [[ $(whoami) == "root" ]]
 				fi
 				;;
 			3)
-				echo "Esta es la opción $option" # Opcion de crear grupo
+        read -p "Nombre del grupo que se desea crear: " group_create
+        cat /etc/group | grep -iw "^$group_create" &> /dev/null
+        if [[ $? -eq 0 ]]
+          then
+            echo "El grupo existe"
+          else
+            echo "El grupo no existe, se procede a borrarlo"
+            sudo groupadd -f $group_create
+        fi
 				;;
 			4)
 				echo "Esta es la opción $option" # Opcion de añadir usuario a grupo
+        read -p "Nombre del usuario que se quiere añadir al grupo: " user_add
+        cat /etc/passwd | grep -iw "^$user_add" &> /dev/null
+        if [[ $? -eq 0 ]]
+          then
+            echo "El usuario existe"
+            read -p "Especifique a qué grupo se quiere añadir el usuario $user_add: " group_add
+            cat /etc/group | grep -iw "^$group_add" &> /dev/null
+            if [[ $? -eq 0 ]]; then
+              echo "El grupo existe"
+              sudo usermod -aG $group_add $user_add 
+            else
+              echo "El grupo no existe"
+            fi
+          else
+            echo "El usuario no existe"
+        fi
 				;;
 			5)
         exit 0
