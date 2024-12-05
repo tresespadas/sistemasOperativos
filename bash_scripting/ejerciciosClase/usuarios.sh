@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 if [[ $(whoami) == "root" ]]
 	then
 		while true; do
@@ -18,7 +17,7 @@ if [[ $(whoami) == "root" ]]
 					else
 						read -sp "Elige una contraseña para el nuevo usuario: " new_user_pass
 						echo
-						sudo useradd -m -p $new_user_pass $new_user
+						sudo useradd -m -p $new_user_pass $new_user # ARREGLAR
             echo "Se ha creado el usuario $new_user con su directorio home personal"
 				fi
 				;;
@@ -41,7 +40,7 @@ if [[ $(whoami) == "root" ]]
           then
             echo "El grupo existe"
           else
-            echo "El grupo no existe, se procede a borrarlo"
+            echo "El grupo no existe, se procede a crearlo"
             sudo groupadd -f $group_create
         fi
 				;;
