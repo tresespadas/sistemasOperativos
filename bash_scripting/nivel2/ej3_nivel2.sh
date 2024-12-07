@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p "dir : " dir
+read -p "dir : " dir # Yo lo he hecho para que pregunte al usuario
 
 ruta=$(find / -type d -name $dir 2>/dev/null)
 if [ -z "$ruta" ]; then
