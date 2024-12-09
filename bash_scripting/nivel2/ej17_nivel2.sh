@@ -5,7 +5,7 @@ if [ "$#" -eq 0 ] || [ "$#" -eq 1 ]; then
   exit 1
 fi
 
-file1=$(find / -type f -name "$1" 2>/dev/null)
+file1=$(find / -type f -name "$1" 2>/dev/null) # A veces encuentra más de uno, quizá añadir "head -n 1"
 file2=$(find / -type f -name "$2" 2>/dev/null)
 if [ -z "$file1" ] || [ -z "$file2" ]; then
   echo "Especifica archivos que existan"
