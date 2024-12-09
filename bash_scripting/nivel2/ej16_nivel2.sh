@@ -16,7 +16,7 @@ fileTester() {
 
 programTester() {
   program=$(find / -type f -executable -name "$1" 2>/dev/null) # El ejercicio se puede complicar si existe más de un ejecutable que comparta el nombre
-  if [ -z "$program" ]; then # Aquí lo he dejado como -f por el tema de los binarios del sistema
+  if [ -z "$program" ]; then 
     echo "El programa no existe"
     exit 1
   fi
