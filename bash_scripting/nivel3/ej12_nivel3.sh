@@ -48,7 +48,7 @@ while true; do
       exit_menu;
       ;;
     *) 
-      echo "Opción inválidad"
+      echo "Opción inválida"
       ;;
   esac
 done
