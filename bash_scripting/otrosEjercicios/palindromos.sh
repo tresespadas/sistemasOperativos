@@ -1,14 +1,10 @@
 #!/bin/env bash
 
-# Suponemos que el script funciona tal que así: ./palindromo.sh aca aca
+# Suponemos que el script funciona tal que así: ./palindromo.sh <palabra o frase>
 
-if [ $# -ne 1 ]; then
-  echo "Especifica un argumento para comprobar si son palíndromos o no"
-  exit 1
-fi
-
-palabra1="$1"
-palabra2="$1"
+# Le quita los espacios y los convierte a minúsculas
+palabra1=$(echo "$@" | tr -d " " | tr 'A-Z' 'a-z')
+palabra2=$(echo "$@" | tr -d " " | tr 'A-Z' 'a-z')
 
 for ((i = 0; i < "${#palabra1}"; i++)); do
   for ((j = ${#palabra2}-1-$i; j >= 0; j--)); do
@@ -20,4 +16,4 @@ for ((i = 0; i < "${#palabra1}"; i++)); do
   done
 done
 
-echo "La palabra $1 es un palíndromo"
+echo "La palabra o frase "$@" es un palíndromo"
