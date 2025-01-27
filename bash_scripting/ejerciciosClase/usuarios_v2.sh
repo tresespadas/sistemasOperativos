@@ -46,7 +46,7 @@ delete_user(){
   for users in "${list_users[@]}"; do
     if [ "$del_user_name" == "$users" ]; then
       echo "Eliminando usuario $del_user_name"
-      userdel $del_user_name
+      userdel -r $del_user_name
       return
     else
       continue
