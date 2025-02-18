@@ -1,7 +1,3 @@
 #!/bin/bash
 
-IFS=" " read -p "" x y z
-
-echo $x
-echo $y
-echo $z
+echo "scale=3; $(cat)" | bc
