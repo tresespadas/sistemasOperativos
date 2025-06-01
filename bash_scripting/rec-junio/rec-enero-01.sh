@@ -39,7 +39,7 @@ clasifica_fich()
 
   echo "Hay ${tipos["dir"]} directorios en '$1'"
   echo "Hay ${tipos["exec"]} archivos ejecutables en '$1'"
-  echo "Hay ${tipos["regu"]} archivos regules en '$1'"
+  echo "Hay ${tipos["regu"]} archivos regulares en '$1'"
 }
 
 
