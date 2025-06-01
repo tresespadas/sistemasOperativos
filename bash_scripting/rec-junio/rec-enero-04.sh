@@ -28,7 +28,7 @@ while getopts 'n:p:t:' opt; do
           case $opt in
             n) echo "Lineas: $(wc -l "$ruta_fichero" | awk '{ print $1}')";;
             p) ls -l "$ruta_fichero" | awk '{ print $1 }';;
-            n) less "$ruta_fichero";;
+            t) less "$ruta_fichero";;
           esac
         else
           exit 0
