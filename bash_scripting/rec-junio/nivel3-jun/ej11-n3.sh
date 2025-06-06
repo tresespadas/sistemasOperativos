@@ -1,26 +1,12 @@
 #!/usr/bin/env bash
 
-### tipo_fichero ###
+### usuario_valido ###
 
-for arg in "$@"; do
-  #echo "$arg"
-  if [[ -e "$arg" ]]; then
-    echo $?
-    arr=("$arg")
-  else
-    mapfile -t arr < <(find /home/ -name "$arg" 2>/dev/null)
-    if [[ "${#arr[@]}" -eq 0 ]]; then
-      echo ""$arg" no existe en el sistema" >&2
-      continue
-    fi
-  fi
+if [[ "$#" -ne 1 ]]; then
+  echo "Se precisa sólo un parámetro: un usuario"
+fi
 
-  for elemento in "${arr[@]}"; do
-    if [[ -d "$elemento" ]]; then
-      echo -n "Tamaño de "$elemento": "
-      du -s --block-size=M "$elemento" 2>/dev/null | awk '{print $1}'
-    elif [[ -f "$elemento" ]]; then
-      echo "$(basename "$elemento") es un $(file -b "$elemento")"
-    fi
-  done
-done
+awk -F: -v user="$1" 'FILENAME=="/etc/group"{split($4,miembros,",");for(i in miembros) if(miembros[i]==user) grupo=grupo $1" "} FILENAME=="/etc/passwd" && $1==user{print "Directorio de trabajo: "$6, "UID: "$3, "Shell: "$NF, "Grupos: " grupo; found=1} END {if(!found) exit 1}' /etc/group /etc/passwd
+if [[ $? -eq 1 ]]; then
+  echo "El usuario no se encuentra en el sistema"
+fi
