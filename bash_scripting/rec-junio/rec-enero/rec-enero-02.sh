@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 dir=$(find /home/ -type d -name "$1" 2>/dev/null)
 

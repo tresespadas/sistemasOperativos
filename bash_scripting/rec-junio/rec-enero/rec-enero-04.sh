@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/sur/bin/env bash
 
 if [[ "$#" -eq 0 ]]; then
   echo "Uso: -n (número de lineas del fichero) -p (permisos del fichero) -t (contenido del fichero)"

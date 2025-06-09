@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 if [[ "$#" -gt 1 ]]; then
   echo "Este script sólo admite un directorio como parámetro. En caso de omitirse se hará sobre $(pwd)"
