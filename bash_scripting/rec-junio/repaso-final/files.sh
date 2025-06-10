@@ -11,7 +11,7 @@ validar_dir()
     printf "%s\n" $(realpath "$1")
     return
   else
-    mapfile -t dir_paths < <(find /home/ -type d -iname "*$1*" 2>/dev/null)
+    mapfile -t dir_paths < <(find /home/ -type d -name "$1" 2>/dev/null)
     if [[ "${#dir_paths[@]}" -eq 0 ]]; then
       return
     else

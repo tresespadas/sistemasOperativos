@@ -19,11 +19,14 @@ clasifica()
   declare -a dirs=() exec=() regu=()
   while IFS= read -r -d '' file; do
     if [[ -d "$file" ]]; then
-      dirs+=("$(basename "$file")")
+      dirs+=$(basename $file" ")
+      #dirs+=("$(basename "$file")")
     elif [[ -x "$file" && -f "$file" ]]; then
-      exec+=("$(basename "$file")")
+      exec+=$(basename $file" ")
+      #exec+=("$(basename "$file")")
     elif [[ -f "$file" ]]; then
-      regu+=("$(basename "$file")")
+      regu+=$(basename $file" ")
+      #regu+=("$(basename "$file")")
     fi
   done < <(find "$1" -maxdepth 1 -mindepth 1 -print0 2>/dev/null)  
   echo "Hay "${#dirs[@]}" directorios en $1: ${dirs[*]}"
